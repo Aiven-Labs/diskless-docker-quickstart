@@ -81,7 +81,16 @@ services:
       # Group Settings
       - KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS=0
 
-      # Inkless Configuration - Enable diskless topics by default
+      # Inkless Storage Configuration
+      - KAFKA_INKLESS_STORAGE_BACKEND_CLASS=io.aiven.inkless.storage_backend.s3.S3Storage
+      - KAFKA_INKLESS_STORAGE_S3_PATH_STYLE_ACCESS_ENABLED=true
+      - KAFKA_INKLESS_STORAGE_S3_BUCKET_NAME=kafka-diskless-data
+      - KAFKA_INKLESS_STORAGE_S3_REGION=us-east-1
+      - KAFKA_INKLESS_STORAGE_S3_ENDPOINT_URL=http://minio:9000
+      - KAFKA_INKLESS_STORAGE_AWS_ACCESS_KEY_ID=minioadmin
+      - KAFKA_INKLESS_STORAGE_AWS_SECRET_ACCESS_KEY=minioadmin
+      
+      # Enable diskless by default
       - KAFKA_LOG_INKLESS_ENABLE=true
 
     healthcheck:
